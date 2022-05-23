@@ -1,0 +1,8 @@
+---
+- name: "Dcoker installation"
+  hosts: all
+  roles:
+    - role: "docker"
+
+
+    

@@ -1,0 +1,13 @@
+---
+# tasks file for Docker
+- name: "Docker installation"
+  package:
+    name: "docker"
+    state: "present"
+
+- name: "docker service activation"
+  service:
+    name: "docker"
+    state: "started"
+    enabled: yes
+

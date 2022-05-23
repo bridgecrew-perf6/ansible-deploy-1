@@ -1,0 +1,5 @@
+---
+web_content_archive_url: "https://gitlab.com/qualibre-info-formations/public/misc-sources/-/archive/master/misc-sources-master.tar.gz?path=ansible-files"
+web_content_directory: '/var/www/http/content/'
+web_user: www-data
+web_group: www-data

@@ -1,0 +1,17 @@
+---
+# tasks file for apache
+- name: "apache installation"
+  package:
+    name: "apache2"
+    state: "present"
+
+- name: "apache service activation"
+  service:
+    name: "apache2"
+    state: "started"
+    enabled: yes
+
+- name: "install Debian php7 packages"
+  include: "php7-install_{{ ansible_facts['distribution']|lower }}.yml"
+  when: php_install|default(False)|bool
+

@@ -1,0 +1,13 @@
+---
+- name: "mariadb-server installation"
+  package:
+    name:
+    - mariadb-server
+    - python3-{% if ansible_facts['distribution'] == 'CentOS' and ansible_facts['distribution_major_version'] == '8' %}PyMySQL{% else %}pymysql{% endif %}
+    state: "present"
+
+- name: "start mariadb service"
+  service:
+    name: "mariadb"
+    state: "started"
+    enabled: yes

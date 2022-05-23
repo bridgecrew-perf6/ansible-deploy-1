@@ -1,0 +1,7 @@
+---
+- name: "MediaWiki Web content configuration"
+  hosts: apache
+  gather_facts: no
+  tags: "apache"
+  roles:
+    - role: "web_content"

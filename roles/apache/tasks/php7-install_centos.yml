@@ -1,0 +1,52 @@
+---
+- name: "epel activation"
+  yum:
+    name: "epel-release"
+    state: present
+ 
+- name: Import remi GPG key.
+  rpm_key:
+    key: http://rpms.remirepo.net/RPM-GPG-KEY-remi
+    state: present
+ 
+- name: Import remi GPG key 2018.
+  rpm_key:
+    key: http://rpms.remirepo.net/RPM-GPG-KEY-remi2018
+    state: present
+ 
+- name: "remi repo activation"
+  yum:
+    name: "https://rpms.remirepo.net/enterprise/remi-release-{{ ansible_facts['distribution_major_version'] }}.rpm"
+    state: present
+ 
+# Ou bien définir un fichier avec la liste des packages a installer et utiliser include_vars
+- name: "install php70 packages for CentOS8"
+  yum:
+    name:
+      - php
+      - php-mysqlnd
+      - php-xml
+      - php-mbstring
+      - php70-php-mcrypt
+      - php-gd
+      - php-intl
+      - php-json
+    state: latest
+    enablerepo: "remi-php70"
+  notify: [ "apache restart" ]
+  when: ansible_facts['distribution_major_version'] | int == 8
+
+- name: "install php70 packages for CentOS7"
+  yum:
+    name:
+      - php
+      - php-mysql
+      - php-xml
+      - php-mbstring
+      - php-mcrypt
+      - php-gd
+      - php-intl
+    state: latest
+    enablerepo: "remi-php70"
+  notify: [ "apache restart" ]
+  when: ansible_facts['distribution_major_version'] | int == 7

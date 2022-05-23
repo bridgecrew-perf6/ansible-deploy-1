@@ -1,0 +1,30 @@
+---
+user:
+  slug: nicolas-sapay
+  
+# Mediawiki administrator name and password
+mediawiki_admin_user: "admin"
+mediawiki_admin_password: !vault |
+  $ANSIBLE_VAULT;1.1;AES256
+  36343338633964306134346565333435613266383139353139316236306430306334653235383061
+  3366346161643039306334396464343635326631313732620a633761613130323437313836363366
+  63383162386463653766353936646333656162303634343137623465623865326664323330343862
+  3131366664663162640a363438363938316461643033383063303932366461646562306531613734
+  3266
+# Mediawiki name and title
+mediawiki_name: "mediawiki"
+mediawiki_title: "ELS"
+# Mediawiki install directory
+mediawiki_directory: "/var/www/html/{{mediawiki_name}}"
+# Maintenance folder for Mediawiki
+mediawiki_maintenance_directory: "{{mediawiki_directory}}/maintenance"
+
+# Mediawiki URL
+mediawiki_archive_url: "https://releases.wikimedia.org/mediawiki/1.37/mediawiki-1.37.1.tar.gz"
+
+# Added
+#web_user: '{% if ansible_facts['distribution'] == 'Debian' %}www-data{% else %}apache{% endif %}'
+#web_group: '{{ 'www-data'  ansible_facts['distribution'] == 'Debian' else 'apache' }}'
+web_user: 'www-data'
+web_group: 'www-data'
+web_content_directory: '/var/www/html/content'

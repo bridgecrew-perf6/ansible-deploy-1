@@ -1,0 +1,19 @@
+---
+- name: "Static site directory"
+  file:
+    path: "/var/www/html/site"
+    owner: "www-data"
+    group: "www-data"
+    state: directory
+
+- name: "uncompress the static content archive"
+  unarchive:
+    src: "https://gitlab.com/qualibre-info-formations/public/misc-sources/-/archive/master/misc-sources-master.tar?path=ansible-files"
+    dest: "/var/www/html/site"
+    owner: "www-data"
+    group: "www-data"
+    remote_src: yes
+    extra_opts: [--strip-components=2]
+    # run_once: yes
+  # delegate_to: "{{item}}"
+  # with_items: "{{groups.apache}}"
