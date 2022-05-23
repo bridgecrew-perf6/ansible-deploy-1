@@ -5,7 +5,11 @@
     name: "docker"
     state: "present"
 
-- name: "docker service activation"
+- name: "Docker pip package install"
+  pip:
+    name: "docker"
+
+- name: "Docker service activation"
   service:
     name: "docker"
     state: "started"
